@@ -24,6 +24,28 @@ class Tree {
             insert(temp, otherChars);
         }
     }
+    std::vector<std::vector<char>> permutations;
+  void insert(Node* root, const std::vector<char>& vect) {
+      for (char c : vect) {
+          Node*temp = new Node;
+          temp->value = c;
+          root->ptrs.push_back(temp);
+          std::vector<char> otherChars(vect);
+          otherChars.erase(std::find(otherChars.begin(), otherChars.end(), c));
+          insert(temp, otherChars);
+      }
+  }
+  void findPermutaions(Node* root, std::vector<char> vect) {
+       if (!root->isRoot)
+          vect.push_back(root->value);
+       if (root->ptrs.empty()) {
+         permutations.push_back(vect);
+       } else {
+           for (Node* child : root->ptrs) {
+               findPermutations(child, vect);
+           }
+       }
+  }
   void findPermutations(Node* root, std::vector<char> vect) {
          if (!root->isRoot)
             vect.push_back(root->value);
