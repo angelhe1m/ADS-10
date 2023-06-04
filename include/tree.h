@@ -35,6 +35,7 @@ class Tree {
             insert(temp, otherChars);
         }
     }
+    
  public:
     explicit Tree(const std::vector<char>& vect) {
         root = new Node;
